@@ -9,17 +9,15 @@ public class BinaryTreeDemo {
         HeroNode node2 = new HeroNode(2, "吴用");
         HeroNode node3 = new HeroNode(3, "卢俊义");
         HeroNode node4 = new HeroNode(4, "林冲");
-        HeroNode node5 = new HeroNode(5, "关胜");
         root.setLeft(node2);
         root.setRight(node3);
         node3.setRight(node4);
-        node3.setLeft(node5);
         binaryTree.setRoot(root);
-        System.out.println("前序遍历");//12354
+        System.out.println("前序遍历");
         binaryTree.preOrder();
-        System.out.println("中序遍历");//21534
+        System.out.println("中序遍历");
         binaryTree.infixorder();
-        System.out.println("后序遍历");//25431
+        System.out.println("后序遍历");
         binaryTree.postorder();
     }
 }
