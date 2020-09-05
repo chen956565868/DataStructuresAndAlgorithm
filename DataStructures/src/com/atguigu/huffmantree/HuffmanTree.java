@@ -24,8 +24,6 @@ public class HuffmanTree {
         while (nodes.size() > 1){
             //排序 从小到大
             Collections.sort(nodes);
-//            System.out.println("未处理");
-//            System.out.println(nodes);
             //取出根节点权值最小的两个二叉树
             Node leftNode = nodes.get(0);
             Node rightNode = nodes.get(1);
@@ -38,8 +36,6 @@ public class HuffmanTree {
             nodes.remove(rightNode);
             //加入parent
             nodes.add(parent);
-//            System.out.println("第一次处理后");
-//            System.out.println(nodes);
         }
         //返回赫夫曼树的root
         return nodes.get(0);
