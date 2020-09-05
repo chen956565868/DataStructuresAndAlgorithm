@@ -18,10 +18,13 @@ public class ThreadedBinaryTreeDemo {
         threadedBinaryTree.setRoot(root);
         threadedBinaryTree.threadNodes();
 
-        HeroNode leftNode = node5.getLeft();
-        System.out.println(leftNode);
-        HeroNode rightNode = node5.getRight();
-        System.out.println(rightNode);
+//        HeroNode leftNode = node5.getLeft();
+//        System.out.println(leftNode);
+//        HeroNode rightNode = node5.getRight();
+//        System.out.println(rightNode);
+
+        //遍历线索化二叉树
+        threadedBinaryTree.threadList();
     }
 }
 
@@ -64,6 +67,26 @@ class ThreadedBinaryTree{
         pre = node;
         //线索化右子树
         threadNodes(node.getRight());
+    }
+
+    //遍历中序线索化二叉树
+    public void threadList(){
+        //存储当前遍历的结点
+        HeroNode node = root;
+        while (node != null){
+            while (node.getLeftType() == 0){
+                node = node.getLeft();
+            }
+            //打印当前结点
+            System.out.println(node);
+            //如果当前结点的右指针是后继节点 就一直输出
+            while (node.getRightType() == 1){
+                //获取到当前结点的后继节点
+                node = node.getRight();
+                System.out.println(node);
+            }
+            node = node.getRight();
+        }
     }
 
     //前序遍历
