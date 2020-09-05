@@ -16,14 +16,14 @@ public class BinaryTreeDemo {
         node3.setLeft(node5);
         binaryTree.setRoot(root);
 
-        System.out.println("前序遍历");//12354
-        binaryTree.preOrder();
-
-        System.out.println("中序遍历");//21534
-        binaryTree.infixorder();
-
-        System.out.println("后序遍历");//25431
-        binaryTree.postorder();
+//        System.out.println("前序遍历");//12354
+//        binaryTree.preOrder();
+//
+//        System.out.println("中序遍历");//21534
+//        binaryTree.infixorder();
+//
+//        System.out.println("后序遍历");//25431
+//        binaryTree.postorder();
 
 //        System.out.println("前序遍历查询");
 //        HeroNode resNode = binaryTree.preOrderSearch(5);
@@ -31,13 +31,18 @@ public class BinaryTreeDemo {
 //        System.out.println("中序遍历查询");
 //        HeroNode resNode = binaryTree.infixOrderSearch(5);
 
-        System.out.println("后序遍历查询");
-        HeroNode resNode = binaryTree.postOrderSearch(5);
-        if (resNode != null){
-            System.out.println("找到no="+resNode.getNo()+"，name="+resNode.getName());
-        }else {
-            System.out.println("没有找到");
-        }
+//        System.out.println("后序遍历查询");
+//        HeroNode resNode = binaryTree.postOrderSearch(5);
+//        if (resNode != null){
+//            System.out.println("找到no="+resNode.getNo()+"，name="+resNode.getName());
+//        }else {
+//            System.out.println("没有找到");
+//        }
+        System.out.println("删除前");//12354
+        binaryTree.preOrder();
+        binaryTree.delNode(3);
+        System.out.println("删除后");//1234
+        binaryTree.preOrder();
     }
 }
 
@@ -101,6 +106,20 @@ class BinaryTree{
         }else {
             return null;
         }
+    }
+
+    //删除结点
+    public void delNode(int no){
+        if (root != null){
+            if (root.getNo() == no){
+                root = null;
+            }else {
+                root.delNode(no);
+            }
+        }else {
+            System.out.println("空树");
+        }
+
     }
 }
 
@@ -263,6 +282,28 @@ class HeroNode{
             return this;
         }
         return resNode;
+    }
+
+    //递归删除结点
+    public void delNode(int no){
+        //判断左子结点
+        if (this.left != null && this.left.no == no){
+            this.left = null;
+            return;
+        }
+        //判断右子结点
+        if (this.right != null && this.right.no == no){
+            this.right = null;
+            return;
+        }
+        //向左递归删除
+        if (this.left != null){
+            this.left.delNode(no);
+        }
+        //向右递归删除
+        if (this.right != null){
+            this.right.delNode(no);
+        }
     }
 }
 
