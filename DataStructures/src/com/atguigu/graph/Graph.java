@@ -98,7 +98,7 @@ public class Graph {
         isVisited[i] = true;
         //将结点加入队列
         queue.addLast(i);
-        while (queue.size()!=0){
+        while (queue.size()!=0){//当队列非空时，继续执行
             //取出队列头结点下标
             u = (int) queue.removeFirst();
             //得到第一个邻接结点的下标
