@@ -2,6 +2,7 @@ package com.atguigu.graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Graph {
     private ArrayList<String> vertexList;//存储顶点集合
@@ -25,7 +26,13 @@ public class Graph {
         graph.showGraph();
 
         //dfs
-        graph.dfs();
+        System.out.println("深度优先");
+//        graph.dfs();
+        System.out.println();
+        System.out.println("---------");
+        //bfs
+        System.out.println("广度优先");
+        graph.bfs();
     }
 
     public Graph(int n) {
@@ -79,6 +86,42 @@ public class Graph {
                 dfs(isVisited,i);
             }
         }
+    }
+
+    //广度优先遍历
+    private void bfs(boolean[] isVisited,int i){
+        int u;//对应头结点对应的下标
+        int w;//邻接结点下标
+        //队列 记录结点访问的数据
+        LinkedList queue = new LinkedList();
+        System.out.print(getValueByIndex(i) + "->");//访问结点
+        isVisited[i] = true;
+        //将结点加入队列
+        queue.addLast(i);
+        while (queue.size()!=0){
+            //取出队列头结点下标
+            u = (int) queue.removeFirst();
+            //得到第一个邻接结点的下标
+            w = getFirstNeighbor(u);
+            while (w >= 0){//存在邻接结点
+                if (!isVisited[w]){//w没有被访问
+                    System.out.print(getValueByIndex(w) + "->");
+                    isVisited[w] = true;
+                    queue.addLast(w);
+                }else {//u的邻接结点w被访问过
+                    w = getNextNeighbor(u,w);
+                }
+            }
+        }
+    }
+
+    private void bfs(){
+        for (int i = 0; i < vertexList.size(); i++) {
+            if (!isVisited[i]){
+                bfs(isVisited,i);
+            }
+        }
+        
     }
 
     //返回顶点个数
